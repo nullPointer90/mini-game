@@ -6,10 +6,11 @@ const path = require("path");
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views",path.join(__dirname,"views"));
+app.use("/scripts", express.static(__dirname+"/node_modules/web3.js-browser/build"));
 
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-//server.listen(3000);
+
 server.listen((process.env.PORT || 5001), function(){
     console.log('listening on *:5001');
   });
